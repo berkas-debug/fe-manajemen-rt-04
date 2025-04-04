@@ -1,0 +1,26 @@
+import React from 'react'
+import { 
+    Route,
+    BrowserRouter as Router,
+    Routes
+ } from 'react-router-dom'
+import Login from '../../pages/auth/Login'
+import Layouts from '../../pages/Layouts'
+import Home from '../../pages/home/Home'
+import NoPage from '../../components/NoPage'
+
+function Navigasi() {
+  return (
+    <Router>
+        <Routes>
+            <Route path='/' element={<Layouts/>}>
+                <Route index element={<Login/>}/>
+                <Route path=':params' element={<Home/>}/>
+                <Route path='*' element={<NoPage/>}/>
+            </Route>
+        </Routes>
+    </Router>
+  )
+}
+
+export default Navigasi

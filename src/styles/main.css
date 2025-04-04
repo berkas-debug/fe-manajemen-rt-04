@@ -1,0 +1,217 @@
+* {
+    padding: 0;
+}
+
+.spasi1 {
+    height: 3rem;
+    background-color: red;
+}
+
+.spasi2 {
+    height: 2rem;
+    background-color: red;
+}
+
+/* ini untuk navbar */
+/* Navbar container */
+.navbar {
+    display: flex;
+    position: fixed;
+    z-index: 0;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 10px 5px;
+    width: 100%;
+}
+
+/* Logo styling */
+.navbar-logo .logo {
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Navbar links container */
+.navbar-links {
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar link styling */
+.navbar-link {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.navbar-link:hover {
+    background-color: #555;
+    border-radius: 5px;
+}
+
+/* Dropdown container */
+.dropdown {
+    position: relative;
+}
+
+/* Dropdown menu (awal: hidden) */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #444;
+    top: 100%;
+    left: 0;
+    min-width: 160px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    z-index: 10;
+}
+
+/* Dropdown menu item */
+.dropdown-menu li {
+    border-bottom: 1px solid #555;
+}
+
+.dropdown-menu li:last-child {
+    border-bottom: none;
+}
+
+.dropdown-menu .navbar-link {
+    display: block;
+    padding: 10px 15px;
+    color: white;
+    text-decoration: none;
+}
+
+/* Hover to show menu */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Optional hover style */
+.dropdown-menu .navbar-link:hover {
+    background-color: #666;
+}
+
+
+
+
+/* untuk footer */
+/* Global style untuk HTML dan body */
+html,
+body {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+/* Body menggunakan flex untuk membuat layout */
+body {
+    display: flex;
+    /* flex-direction: column; */
+    min-height: 100vh;
+    /* Pastikan body memenuhi tinggi layar */
+}
+
+/* Konten utama */
+.main-content {
+    flex: 1;
+    /* Ambil sisa ruang */
+}
+
+/* Footer */
+.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}
+
+.footer-text {
+    margin: 0;
+    font-size: 14px;
+}
+
+
+/* Login */
+/* Atur tampilan halaman agar form di tengah layar */
+.login-page {
+    height: 100%;
+    background-image: url('');
+    /* background-color: #f2f2f2; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Kotak form login */
+.login-box {
+    background-color: #fff;
+    padding: 40px 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+}
+
+.center-screen {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Heading */
+.login-box h2 {
+    margin-bottom: 25px;
+    text-align: center;
+    color: #333;
+}
+
+/* Label input */
+.login-box label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #555;
+}
+
+/* Input */
+.login-box input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Tombol login */
+.login-box button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-box button:hover {
+    background-color: #0056b3;
+}
