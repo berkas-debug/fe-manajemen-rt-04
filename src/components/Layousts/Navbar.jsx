@@ -1,16 +1,27 @@
-import React from 'react'
-import { Link, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 function Navbar() {
   // const {params} = useParams();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const { login } = useSelector(state => state.auth);
+  const success = login?.success;
+  useEffect(() => {
+    setIsLoggedIn(success === true);
+  }, [success]);
   return (
     <div>
       <nav className="navbar">
-        <div className="navbar-logo">
+      {isLoggedIn ? (
+        <>
+          <div className="navbar-logo">
           <Link to="/" className="logo">
             Manajemen RT 04
           </Link>
         </div>
+        
         <ul className="navbar-links">
           <li>
             <Link to="/" className="navbar-link">Home</Link>
@@ -30,6 +41,26 @@ function Navbar() {
             <Link to="/contact" className="navbar-link">Contact</Link>
           </li>
         </ul>
+        <ul className="navbar-links-onmini">
+          <li className="dropdown">
+            <span className="navbar-link">Menu ▾</span>
+            <ul className="dropdown-menu">
+              <li><Link to="/services/web" className="navbar-link">Web Development</Link></li>
+              <li><Link to="/services/design" className="navbar-link">Design</Link></li>
+              <li><Link to="/services/seo" className="navbar-link">SEO</Link></li>
+            </ul>
+          </li>
+        </ul>
+        </>
+      ) : (
+        <>
+          <div className="navbar-logo">
+          <Link to="/" className="logo">
+            Manajemen RT 04
+          </Link>
+        </div>
+        </>
+      )}
       </nav>
     </div>
   );

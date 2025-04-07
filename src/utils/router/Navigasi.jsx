@@ -15,7 +15,7 @@ function Navigasi() {
         <Routes>
             <Route path='/' element={<Layouts/>}>
                 <Route index element={<Login/>}/>
-                <Route path=':params' element={<Home/>}/>
+                <Route path='dashboard' element={<Home/>}/>
                 <Route path='*' element={<NoPage/>}/>
             </Route>
         </Routes>

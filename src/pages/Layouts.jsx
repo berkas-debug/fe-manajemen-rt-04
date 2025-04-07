@@ -9,8 +9,8 @@ function Layouts() {
         <Navbar/>
         <div className='spasi1'></div>
         <Outlet/>
-        <div className='spasi2'></div>
-        <Footer/>
+        {/* <div className='spasi2'></div> */}
+        
     </div>
   )
 }

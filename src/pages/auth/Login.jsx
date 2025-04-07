@@ -1,41 +1,54 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import Footer from '../../components/Layousts/Footer';
+import { useDispatch, useSelector } from 'react-redux';
+import auth from '../../store/actions/alldata.actions';
 
 function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
+  // const navigate = useNavigate();
+  const [credentials, setCredentials] = useState({ key1: '', key2: '' });
+  const dispatch = useDispatch();
+  // const loginState = useSelector(state => state.datas);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setCredentials({ ...credentials, [name]: value });
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(`Login dengan: ${email}`);
+    dispatch(auth(credentials));
+    setCredentials({ key1: '', key2: '' });
   };
-
+  const { login } = useSelector(state => state.auth);
+  const username = login?.username;
+  
   return (
     <div className="login-page">
       <div className="login-box center-screen">
-        <h2>Login</h2>
+        <h2>Login {username}</h2>
         <form onSubmit={handleSubmit}>
-          <label>Email</label>
+          <label>Nomor Pengguna</label>
           <input
-            type="email"
+            type="text"
+            name="key1"
             placeholder="Masukkan email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={credentials.key1}
+            onChange={handleChange}
             required
           />
 
           <label>Password</label>
           <input
             type="password"
+            name='key2'
             placeholder="Masukkan password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={credentials.key2}
+            onChange={handleChange}
             required
           />
 
           <button type="submit">Login</button>
         </form>
       </div>
+      <Footer/>
     </div>
   );
 }

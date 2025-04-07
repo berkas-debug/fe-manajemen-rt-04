@@ -1,0 +1,5 @@
+export const scopeActionTypes = {
+    WARGA_REQUEST: 'WARGA_REQUEST',
+    WARGA_SUCCESS: 'WARGA_SUCCESS',
+    WARGA_FAILURE: 'WARGA_FAILURE',
+}
