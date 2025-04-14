@@ -8,6 +8,7 @@ import Login from '../../pages/auth/Login'
 import Layouts from '../../pages/Layouts'
 import Home from '../../pages/home/Home'
 import NoPage from '../../components/NoPage'
+import Wargabaru from '../../pages/auth/Wargabaru'
 
 function Navigasi() {
   return (
@@ -15,6 +16,7 @@ function Navigasi() {
         <Routes>
             <Route path='/' element={<Layouts/>}>
                 <Route index element={<Login/>}/>
+                <Route path='wargabaru' element={<Wargabaru/>}/>
                 <Route path='dashboard' element={<Home/>}/>
                 <Route path='*' element={<NoPage/>}/>
             </Route>

@@ -2,14 +2,15 @@
 import Card from '../../components/Fungsi/Card';
 // import { useParams } from 'react-router-dom';
 import { FcMoneyTransfer, FcSurvey, FcInvite, FcConferenceCall, FcExport, FcFaq } from "react-icons/fc";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../store/actions/alldata.actions';
 
 function Home() {
+  const dispatch = useDispatch();
   const { login } = useSelector(state => state.auth);
 const username = login?.username;
   const handleLogout = () => {
-    localStorage.clear()
-    window.location.replace('/'); // redirect ke halaman login
+    dispatch(logout());
   };
   
   return (

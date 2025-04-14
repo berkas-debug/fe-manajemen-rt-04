@@ -5,8 +5,39 @@ export default function auth(params) {
     return async dispatch => {
         dispatch({ type: actionTypes.LOGIN_REQUEST, payload: params })
         try {
-            
+
             const response = await fetch(`${baseUrl}auth/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include',
+                body: JSON.stringify(params)
+            })
+            if (!response.ok) {
+                const error = await response.json();
+                throw new Error(error.message || `HTTP error! status: ${response.status}`);
+            }
+            const res = await response.json();
+            console.log("ini",res);
+            if (res.success) {
+                window.location.replace("/dashboard");
+            } else {
+                console.error("Data yang diterima tidak lengkap:", res);
+            }
+            dispatch({ type: actionTypes.LOGIN_SUCCESS, payload: res })
+        } catch (error) {
+            dispatch({ type: actionTypes.LOGIN_FAILURE, payload: error.message })
+        }
+    }
+}
+
+export function wargabaru(params) {
+    return async dispatch => {
+        dispatch({ type: actionTypes.LOGIN_REQUEST, payload: params })
+        try {
+
+            const response = await fetch(`${baseUrl}auth/wargabaru`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -20,12 +51,42 @@ export default function auth(params) {
             const res = await response.json();
             console.log("ini",res);
             if (res.success) {
-                localStorage.setItem('isLoggedIn', 'true');
                 window.location.replace("/dashboard");
             } else {
                 console.error("Data yang diterima tidak lengkap:", res);
             }
             dispatch({ type: actionTypes.LOGIN_SUCCESS, payload: res })
+        } catch (error) {
+            dispatch({ type: actionTypes.LOGIN_FAILURE, payload: error.message })
+        }
+    }
+}
+
+export function logout() {
+    return async dispatch => {
+        dispatch({ type: actionTypes.LOGIN_REQUEST })
+        try {
+
+            const response = await fetch(`${baseUrl}auth/logout`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include'
+            })
+            if (!response.ok) {
+                const error = await response.json();
+                throw new Error(error.message || `HTTP error! status: ${response.status}`);
+            }
+            const res = await response.json();
+            console.log("ini",res);
+            if (res.success) {
+                localStorage.clear()
+                window.location.replace("/");
+            } else {
+                console.error("Gagal");
+            }
+            dispatch({ type: actionTypes.LOGIN_SUCCESS })
         } catch (error) {
             dispatch({ type: actionTypes.LOGIN_FAILURE, payload: error.message })
         }

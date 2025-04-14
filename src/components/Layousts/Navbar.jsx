@@ -59,6 +59,11 @@ function Navbar() {
             Manajemen RT 04
           </Link>
         </div>
+        <ul className="navbar-links">
+          <li>
+            <Link to="/wargabaru" className="navbar-link">Warga Baru</Link>
+          </li>
+        </ul>
         </>
       )}
       </nav>

@@ -1,27 +1,29 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import Footer from '../../components/Layousts/Footer';
 import { useDispatch, useSelector } from 'react-redux';
 import auth from '../../store/actions/alldata.actions';
 
 function Login() {
-  // const navigate = useNavigate();
   const [credentials, setCredentials] = useState({ key1: '', key2: '' });
   const dispatch = useDispatch();
-  // const loginState = useSelector(state => state.datas);
+  const [showPassword, setShowPassword] = useState(false);
+  const { login } = useSelector(state => state.auth);
+  const username = login?.message;
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCredentials({ ...credentials, [name]: value });
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(auth(credentials));
     setCredentials({ key1: '', key2: '' });
   };
-  const { login } = useSelector(state => state.auth);
-  const username = login?.username;
   
+
   return (
-    <div className="login-page">
+    <div className="login-page spasion">
       <div className="login-box center-screen">
         <h2>Login {username}</h2>
         <form onSubmit={handleSubmit}>
@@ -36,19 +38,38 @@ function Login() {
           />
 
           <label>Password</label>
-          <input
-            type="password"
-            name='key2'
-            placeholder="Masukkan password"
-            value={credentials.key2}
-            onChange={handleChange}
-            required
-          />
+          <div style={{ position: 'relative' }}>
+            <input
+              type={showPassword ? 'text' : 'password'}
+              name="key2"
+              placeholder="Masukkan password"
+              value={credentials.key2}
+              onChange={handleChange}
+              required
+              style={{ width: '100%', paddingRight: '30px' }} // supaya gak ketiban icon
+            />
+            <span
+              onClick={() => setShowPassword(!showPassword)}
+              style={{
+                position: 'absolute',
+                right: '10px',
+                top: '30%',
+                transform: 'translateY(-50%)',
+                cursor: 'pointer',
+                color: '#888',
+                fontSize: '18px'
+              }}
+            >
+              {showPassword ? '🕶️' : '👁️'}
+            </span>
+          </div>
 
-          <button type="submit">Login</button>
+
+
+          <button type="submit" className="login-button">Login</button>
         </form>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 }

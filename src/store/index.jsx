@@ -37,7 +37,7 @@ const encryptTransform = {
 const persistConfig = {
     key: "keyday",
     storage,
-    // whitelist: ['login'],
+    whitelist: ['auth'],
     transforms: [encryptTransform], // gunakan transform custom kita
 };
 
