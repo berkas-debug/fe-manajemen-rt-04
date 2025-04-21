@@ -9,7 +9,7 @@ import Layouts from '../../pages/Layouts'
 import Home from '../../pages/home/Home'
 import NoPage from '../../components/NoPage'
 import Wargabaru from '../../pages/auth/Wargabaru'
-import Datawarga from '../../components/ketua/datawarga'
+import Datawarga from '../../components/ketua/Datawarga'
 import PrivateRoute from './PrivateRoute'
 
 function Navigasi() {
