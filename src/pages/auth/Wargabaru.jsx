@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import Footer from '../../components/Layousts/Footer';
-import { useDispatch, useSelector } from 'react-redux';
-import auth from '../../store/actions/alldata.actions';
+import { useDispatch } from 'react-redux';
+import { wargabaru } from '../../store/actions/alldata.actions';
 
 function Wargabaru() {
-    const [credentials, setCredentials] = useState({ key1: '', key2: '' });
+    const [credentials, setCredentials] = useState({ key1: '', key2: '', key3: '', key4: '', key5: '' });
+    const [showPassword, setShowPassword] = useState(false);
     const dispatch = useDispatch();
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -12,66 +13,81 @@ function Wargabaru() {
     };
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(auth(credentials));
-        setCredentials({ key1: '', key2: '' });
+        dispatch(wargabaru(credentials));
+        setCredentials({ key1: '', key2: '', key3: '', key4: '', key5: '' });
     };
-    const { login } = useSelector(state => state.auth);
-    const username = login?.message;
 
     return (
         <div className="login-page">
             <div className="login-box center-screen">
-                <h2>Login {username}</h2>
+                <h2>Warga Baru</h2>
                 <form onSubmit={handleSubmit}>
-                    <label>Nomor Pengguna</label>
+                    <label>Nama Warga</label>
                     <input
                         type="text"
                         name="key1"
-                        placeholder="Masukkan email"
+                        placeholder="Masukkan Nama Warga"
                         value={credentials.key1}
                         onChange={handleChange}
                         required
                     />
 
-                    <label>Password</label>
+                    <label>Alamat</label>
                     <input
-                        type="password"
+                        type="text"
                         name='key2'
-                        placeholder="Masukkan password"
+                        placeholder="Masukan Alamat"
                         value={credentials.key2}
                         onChange={handleChange}
                         required
                     />
 
-                    <label>Password</label>
+                    <label>No HP</label>
                     <input
-                        type="password"
-                        name='key2'
-                        placeholder="Masukkan password"
-                        value={credentials.key2}
+                        type="text"
+                        name='key3'
+                        placeholder="Masukan No HP"
+                        value={credentials.key3}
+                        onChange={handleChange}
+                        required
+                    />
+
+                    <label>Nama Untuk Login</label>
+                    <input
+                        type="text"
+                        name='key4'
+                        placeholder="Masukkan Tanda Pengenal Saat Masuk"
+                        value={credentials.key4}
                         onChange={handleChange}
                         required
                     />
 
                     <label>Password</label>
-                    <input
-                        type="password"
-                        name='key2'
-                        placeholder="Masukkan password"
-                        value={credentials.key2}
-                        onChange={handleChange}
-                        required
-                    />
-
-                    <label>Password</label>
-                    <input
-                        type="password"
-                        name='key2'
-                        placeholder="Masukkan password"
-                        value={credentials.key2}
-                        onChange={handleChange}
-                        required
-                    />
+                    <div style={{ position: 'relative' }}>
+                        <input
+                            type={showPassword ? 'text' : 'password'}
+                            name="key5"
+                            placeholder="Masukkan Password"
+                            value={credentials.key5}
+                            onChange={handleChange}
+                            required
+                            style={{ width: '100%', paddingRight: '30px' }} // supaya gak ketiban icon
+                        />
+                        <span
+                            onClick={() => setShowPassword(!showPassword)}
+                            style={{
+                                position: 'absolute',
+                                right: '10px',
+                                top: '30%',
+                                transform: 'translateY(-50%)',
+                                cursor: 'pointer',
+                                color: '#888',
+                                fontSize: '18px'
+                            }}
+                        >
+                            {showPassword ? '🕶️' : '👁️'}
+                        </span>
+                    </div>
 
                     <button type="submit">Login</button>
                 </form>

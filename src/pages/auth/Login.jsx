@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import Footer from '../../components/Layousts/Footer';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, /* useSelector */ } from 'react-redux';
 import auth from '../../store/actions/alldata.actions';
 
 function Login() {
   const [credentials, setCredentials] = useState({ key1: '', key2: '' });
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
-  const { login } = useSelector(state => state.auth);
-  const username = login?.message;
+  // const { login } = useSelector(state => state.auth);
+  // const username = login?.message;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,6 +18,7 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(auth(credentials));
+
     setCredentials({ key1: '', key2: '' });
   };
   
@@ -25,7 +26,7 @@ function Login() {
   return (
     <div className="login-page spasion">
       <div className="login-box center-screen">
-        <h2>Login {username}</h2>
+        <h2>Login</h2>
         <form onSubmit={handleSubmit}>
           <label>Nomor Pengguna</label>
           <input

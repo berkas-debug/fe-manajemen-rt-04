@@ -323,6 +323,31 @@ body {
     background-color: #2980b9;
 }
 
+/* tabel di datawarga */
+.table-standard {
+    border-collapse: collapse;
+    width: 80%;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+}
+
+.table-standard thead {
+    background-color: #3f51b5; /* Biru kalem */
+    color: white;
+  }
+
+.table-standard th,
+.table-standard td {
+    border: 1px solid black;
+    padding: 8px 12px;
+    text-align: left;
+}
+
+.table-standard tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+
 
 @media (max-width: 425px) {
     .navbar-links {

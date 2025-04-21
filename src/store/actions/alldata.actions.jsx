@@ -1,5 +1,7 @@
 import { actionTypes } from "../actionsTypes";
+import Swal from 'sweetalert2'
 const baseUrl = import.meta.env.VITE_BASE_URL;
+
 
 export default function auth(params) {
     return async dispatch => {
@@ -19,11 +21,19 @@ export default function auth(params) {
                 throw new Error(error.message || `HTTP error! status: ${response.status}`);
             }
             const res = await response.json();
-            console.log("ini",res);
             if (res.success) {
                 window.location.replace("/dashboard");
             } else {
-                console.error("Data yang diterima tidak lengkap:", res);
+                Swal.fire({
+                    title: 'Gagal',
+                    text: res.message,
+                    icon: 'info',
+                    timer: 3000,
+                    timerProgressBar: true,
+                    showConfirmButton: false
+                }).then(() => {
+                    window.location.href = '/';
+                });
             }
             dispatch({ type: actionTypes.LOGIN_SUCCESS, payload: res })
         } catch (error) {
@@ -49,11 +59,29 @@ export function wargabaru(params) {
                 throw new Error(error.message || `HTTP error! status: ${response.status}`);
             }
             const res = await response.json();
-            console.log("ini",res);
-            if (res.success) {
-                window.location.replace("/dashboard");
+            console.log("ini", res);
+            if (res.apa) {
+                Swal.fire({
+                    title: 'Gagal',
+                    text: res.message,
+                    icon: 'info',
+                    timer: 3000,
+                    timerProgressBar: true,
+                    showConfirmButton: false
+                }).then(() => {
+                    window.location.href = '/wargabaru';
+                });
             } else {
-                console.error("Data yang diterima tidak lengkap:", res);
+                Swal.fire({
+                    title: 'Berhasil',
+                    text: res.message,
+                    icon: 'success',
+                    timer: 3000,
+                    timerProgressBar: true,
+                    showConfirmButton: false
+                }).then(() => {
+                    window.location.href = '/wargabaru';
+                });
             }
             dispatch({ type: actionTypes.LOGIN_SUCCESS, payload: res })
         } catch (error) {
@@ -79,7 +107,7 @@ export function logout() {
                 throw new Error(error.message || `HTTP error! status: ${response.status}`);
             }
             const res = await response.json();
-            console.log("ini",res);
+            console.log("ini", res);
             if (res.success) {
                 localStorage.clear()
                 window.location.replace("/");

@@ -8,26 +8,30 @@ const initState = {
 
 const scopedatas = (state = initState, action) => {
     switch (action.type) {
-        case actionTypes.WARGA_REQUEST:
+        case actionTypes.DATA_WARGA_REQUEST:
             return {
                 ...state,
                 loading: true
-            }
-        case actionTypes.WARGA_SUCCESS:
+            };
+
+        case actionTypes.DATA_WARGA_SUCCESS:
             return {
                 ...state,
                 loading: false,
                 datauser: action.payload
-            }
-        case actionTypes.WARGA_FAILURE:
+            };
+
+        case actionTypes.DATA_WARGA_FAILURE:
             return {
                 ...state,
                 loading: false,
                 error: action.payload
-            }
+            };
+
         default:
             return state;
     }
-}
+};
+
 
 export default scopedatas;

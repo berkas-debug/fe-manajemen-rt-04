@@ -3,30 +3,29 @@ const baseUrl = import.meta.env.VITE_BASE_URL;
 
 export default function datawarga() {
     return async dispatch => {
-        dispatch({ type: actionTypes.LOGIN_REQUEST})
+        dispatch({ type: actionTypes.DATA_WARGA_REQUEST})
         try {
             
-            const response = await fetch(`${baseUrl}auth/login`, {
+            const response = await fetch(`${baseUrl}user`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
                 },
+                credentials: 'include'
             })
             if (!response.ok) {
                 const error = await response.json();
                 throw new Error(error.message || `HTTP error! status: ${response.status}`);
             }
             const res = await response.json();
-            console.log("ini",res);
-            if (res.success) {
-                localStorage.setItem('isLoggedIn', 'true');
-                window.location.replace("/dashboard");
+            if (res.okey) {
+                window.location.href("/dashboard");
             } else {
-                console.error("Data yang diterima tidak lengkap:", res);
+                ''
             }
-            dispatch({ type: actionTypes.LOGIN_SUCCESS, payload: res })
+            dispatch({ type: actionTypes.DATA_WARGA_SUCCESS, payload: res.data })
         } catch (error) {
-            dispatch({ type: actionTypes.LOGIN_FAILURE, payload: error.message })
+            dispatch({ type: actionTypes.DATA_WARGA_FAILURE, payload: error.message })
         }
     }
 }
