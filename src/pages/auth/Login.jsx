@@ -7,8 +7,6 @@ function Login() {
   const [credentials, setCredentials] = useState({ key1: '', key2: '' });
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
-  // const { login } = useSelector(state => state.auth);
-  // const username = login?.message;
 
   const handleChange = (e) => {
     const { name, value } = e.target;

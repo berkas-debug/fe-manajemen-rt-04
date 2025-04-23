@@ -22,7 +22,7 @@ export default function auth(params) {
             }
             const res = await response.json();
             if (res.success) {
-                // window.location.replace("/dashboard");
+                window.location.replace("/dashboard");
             } else {
                 Swal.fire({
                     title: 'Gagal',
@@ -59,7 +59,6 @@ export function wargabaru(params) {
                 throw new Error(error.message || `HTTP error! status: ${response.status}`);
             }
             const res = await response.json();
-            console.log("ini", res);
             if (res.apa) {
                 Swal.fire({
                     title: 'Gagal',
@@ -84,37 +83,6 @@ export function wargabaru(params) {
                 });
             }
             dispatch({ type: actionTypes.LOGIN_SUCCESS, payload: res })
-        } catch (error) {
-            dispatch({ type: actionTypes.LOGIN_FAILURE, payload: error.message })
-        }
-    }
-}
-
-export function logout() {
-    return async dispatch => {
-        dispatch({ type: actionTypes.LOGIN_REQUEST })
-        try {
-
-            const response = await fetch(`${baseUrl}auth/logout`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                credentials: 'include'
-            })
-            if (!response.ok) {
-                const error = await response.json();
-                throw new Error(error.message || `HTTP error! status: ${response.status}`);
-            }
-            const res = await response.json();
-            console.log("ini", res);
-            if (res.success) {
-                localStorage.clear()
-                window.location.replace("/");
-            } else {
-                console.error("Gagal");
-            }
-            dispatch({ type: actionTypes.LOGIN_SUCCESS })
         } catch (error) {
             dispatch({ type: actionTypes.LOGIN_FAILURE, payload: error.message })
         }

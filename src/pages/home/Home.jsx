@@ -2,21 +2,20 @@
 import Card from '../../components/Fungsi/Card';
 // import { useParams } from 'react-router-dom';
 import { FcMoneyTransfer, FcSurvey, FcInvite, FcConferenceCall, FcExport, FcFaq } from "react-icons/fc";
-import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../../store/actions/alldata.actions';
+import { useSelector } from 'react-redux';
 
 function Home() {
-  const dispatch = useDispatch();
   const { login } = useSelector(state => state.auth);
-const username = login?.username;
+  const username = login?.username;
   const handleLogout = () => {
-    dispatch(logout());
+    localStorage.removeItem("persist:keyday");
+    window.location.replace("/");
   };
-  
+
   return (
     <div className='content'>
       <h1>Selamat Datang {username}</h1>
-      <div style={{ display: 'flex', height: 'auto', justifyContent: 'center'  }}>
+      <div style={{ display: 'flex', height: 'auto', justifyContent: 'center' }}>
         <Card
           Icon={FcFaq}
           color={"#27ae60"}
@@ -39,8 +38,8 @@ const username = login?.username;
           href="/halaman-tujuan"
         />
       </div>
-    
-      <div style={{ display: 'flex', height: 'auto', justifyContent: 'center'  }}>
+
+      <div style={{ display: 'flex', height: 'auto', justifyContent: 'center' }}>
         <Card
           Icon={FcMoneyTransfer}
           color={"#27ae60"}
