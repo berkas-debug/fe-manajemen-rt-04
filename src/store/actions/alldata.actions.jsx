@@ -22,7 +22,7 @@ export default function auth(params) {
             }
             const res = await response.json();
             if (res.success) {
-                window.location.replace("/dashboard");
+                // window.location.replace("/dashboard");
             } else {
                 Swal.fire({
                     title: 'Gagal',
