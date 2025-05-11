@@ -54,37 +54,8 @@ export function wargabaru(params) {
                 },
                 body: JSON.stringify(params)
             })
-            if (!response.ok) {
-                const error = await response.json();
-                throw new Error(error.message || `HTTP error! status: ${response.status}`);
-            }
-            const res = await response.json();
-            if (res.apa) {
-                Swal.fire({
-                    title: 'Gagal',
-                    text: res.message,
-                    icon: 'info',
-                    timer: 3000,
-                    timerProgressBar: true,
-                    showConfirmButton: false
-                }).then(() => {
-                    window.location.href = '/wargabaru';
-                });
-            } else {
-                Swal.fire({
-                    title: 'Berhasil',
-                    text: res.message,
-                    icon: 'success',
-                    timer: 3000,
-                    timerProgressBar: true,
-                    showConfirmButton: false
-                }).then(() => {
-                    window.location.href = '/wargabaru';
-                });
-            }
-            dispatch({ type: actionTypes.LOGIN_SUCCESS, payload: res })
         } catch (error) {
-            dispatch({ type: actionTypes.LOGIN_FAILURE, payload: error.message })
+            dispatch({ type: actionTypes.LOGIN_FAILURE, payload: error })
         }
     }
 }

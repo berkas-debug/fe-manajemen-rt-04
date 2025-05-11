@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import datawarga from '../../store/actions/scope.actions';
+import {datawarga} from '../../store/actions/scope.actions';
 
 function Datawarga() {
     const dispatch = useDispatch();
@@ -36,6 +36,8 @@ function Datawarga() {
                                         <td>{item.nama}</td>
                                         <td>{item.alamat}</td>
                                         <td>{item.no_hp}</td>
+
+
                                     </tr>
                                 ))
                             ) : (

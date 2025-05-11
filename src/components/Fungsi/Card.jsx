@@ -1,18 +1,14 @@
 import React from 'react';
 
 const Card = ({ title, description, Icon, color, onClick, href }) => {
-    const Wrapper = href
-        ? 'a'
-        : onClick
-            ? 'div'
-            : 'div'; // fallback
+    const Wrapper = href ? 'a' : 'div';
 
     const wrapperProps = {
         href: href || undefined,
         onClick: onClick || undefined,
         className: 'card clickable-card',
         style: {
-            textDecoration: 'none', // remove underline if <a>
+            textDecoration: 'none',
             color: 'inherit',
             cursor: 'pointer',
         },

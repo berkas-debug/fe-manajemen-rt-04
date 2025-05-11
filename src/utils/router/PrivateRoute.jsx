@@ -7,7 +7,7 @@ const PrivateRoute = ({ children }) => {
     const { login } = useSelector(state => state.auth);
     const soeps = login?.success;
 
-    return soeps ? children : <Navigate to="/" replace />;
+    return soeps ? <Navigate to="/dashboard" replace /> : children ;
 };
 
 export default PrivateRoute;

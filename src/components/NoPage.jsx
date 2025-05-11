@@ -6,7 +6,7 @@ function NoPage() {
         <div className="notfound-container">
             <h1 className="notfound-title">404</h1>
             <p className="notfound-message">Oops! Halaman yang Anda cari tidak ditemukan.</p>
-            <Link to="/" className="back-home-button">
+            <Link to="/dashboard" className="back-home-button">
                 Kembali ke Beranda
             </Link>
         </div>

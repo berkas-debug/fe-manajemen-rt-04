@@ -4,8 +4,7 @@ import { useDispatch } from 'react-redux';
 import { wargabaru } from '../../store/actions/alldata.actions';
 
 function Wargabaru() {
-    const [credentials, setCredentials] = useState({ key1: '', key2: '', key3: '', key4: '', key5: '' });
-    const [showPassword, setShowPassword] = useState(false);
+    const [credentials, setCredentials] = useState({ key1: '', key2: '', key3: '' });
     const dispatch = useDispatch();
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -14,7 +13,7 @@ function Wargabaru() {
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(wargabaru(credentials));
-        setCredentials({ key1: '', key2: '', key3: '', key4: '', key5: '' });
+        setCredentials({ key1: '', key2: '', key3: ''});
     };
 
     return (
@@ -42,7 +41,7 @@ function Wargabaru() {
                         required
                     />
 
-                    <label>No HP</label>
+                    <label>No HP (Contoh : 08123456789)</label>
                     <input
                         type="text"
                         name='key3'
@@ -52,47 +51,9 @@ function Wargabaru() {
                         required
                     />
 
-                    <label>Nama Untuk Login</label>
-                    <input
-                        type="text"
-                        name='key4'
-                        placeholder="Masukkan Tanda Pengenal Saat Masuk"
-                        value={credentials.key4}
-                        onChange={handleChange}
-                        required
-                    />
-
-                    <label>Password</label>
-                    <div style={{ position: 'relative' }}>
-                        <input
-                            type={showPassword ? 'text' : 'password'}
-                            name="key5"
-                            placeholder="Masukkan Password"
-                            value={credentials.key5}
-                            onChange={handleChange}
-                            required
-                            style={{ width: '100%', paddingRight: '30px' }} // supaya gak ketiban icon
-                        />
-                        <span
-                            onClick={() => setShowPassword(!showPassword)}
-                            style={{
-                                position: 'absolute',
-                                right: '10px',
-                                top: '30%',
-                                transform: 'translateY(-50%)',
-                                cursor: 'pointer',
-                                color: '#888',
-                                fontSize: '18px'
-                            }}
-                        >
-                            {showPassword ? '🕶️' : '👁️'}
-                        </span>
-                    </div>
-
                     <button type="submit">Login</button>
                 </form>
             </div>
-            <Footer />
         </div>
     );
 }
